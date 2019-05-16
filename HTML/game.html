@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<meta charset="UTF-8">
+</head>
+<body>
+<div id = "Window">
+	<input id="Name" placeholder="Name..."><br>
+	<input id="GameID" placeholder="Game ID..."><br>
+	<button onclick="updateBoard()">Update Board</button>
+</div>
+<div>
+
+
+</div>
+</body>
+<script>
+	function objectToURLParameters(obj){
+		if(obj == null) return ''
+		url = Object.keys(obj).map(function(k) {
+			return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])
+		}).join('&')
+		return url
+	}
+	
+	var objectToURL = objectToURLParameters
+		
+	function submitForm(_url, _data, type, callback){
+		if(type == null){
+			type = 'get'
+		}
+		$.ajax({
+			type : type,
+			url : _url + '?' + objectToURLParameters(_data),
+			data : {},
+			success : function(response){
+				callback(response);
+			}
+		});
+	}
+	
+	function doGet(url, data, callback){
+		submitForm(url, data, 'post', callback)
+	}
+</script>
+
+<script>
+
+const website = 'https://localhost:3000'
+
+function updateBoard(){
+	console.log("AYY")
+	doGet(website + '/get_board', {
+		name : document.getElementById('Name').value,
+		gameID : document.getElementById('GameID').value
+	}, (res)=>{
+		console.log(res)
+	})
+}
+
+
+</script>
+</html>
