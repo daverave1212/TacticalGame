@@ -12,8 +12,19 @@ StructureTypes = {
 			stone : 3,
 		},
 		res : {
-			gold : 4
+			gold : 4,
 			food : 4
+		}
+	},
+	'Town Hall' : {
+		name : 'Town Hall',
+		cost : {
+			wood : 0,
+			stone : 0,
+		},
+		res : {
+			gold : 0,
+			food : 0
 		}
 	}
 }
